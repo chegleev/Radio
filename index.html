@@ -48,6 +48,14 @@
       background: #ffffff;
       border: 3px solid #5181b8;
     }
+    #im {
+      position: absolute;
+      right: 20px;
+      height: 100px;
+      width: 100px;
+      border-radius: 5px;
+      background: #dae2ea;
+    }
 </style>
 </head> 
 <body>
@@ -55,6 +63,7 @@
 <div id="all">
 <center>
 <div style="left: 20px; position: absolute;"><img src="units.svg"><br><font id="units"></font></div><img id="btn" src="play.svg" onclick="myBtn()">
+<img id="im">
 <br><br>
 <font id="f">Громкость: 0 %</font><br><br>
 <input id="rng" type="range" min="0" step="0" value="0" oninput="setVolMove()" style="width: 70vw">
@@ -77,6 +86,8 @@
   var story = document.getElementById('story');
 
   var units = document.getElementById('units');
+
+  var im = document.getElementById('im');
 
   var aniBut;
 
@@ -141,6 +152,8 @@
       story.innerHTML = list.trim("\n");
 
       units.innerHTML = JSON.parse(x.responseText).listeners;
+
+      im.src = "https://myradio24.com/" + JSON.parse(x.responseText).img;
 
       t.innerHTML = "Сейчас играет:<br><b>" +  JSON.parse(x.responseText).song + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br><div style=\"background:#5181b8; color:#ffffff; padding:5px\">Ранее звучали:</div>";
     }
