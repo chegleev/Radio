@@ -54,7 +54,7 @@
 <audio id="idaudio" preload="none"></audio>
 <div id="all">
 <center>
-<div style="left: 20px; position: absolute;"><img src="units.png"><br><font id="units"></font></div><img id="btn" src="play.png" onclick="myBtn()">
+<div style="left: 20px; position: absolute;"><img src="units.svg"><br><font id="units"></font></div><img id="btn" src="play.svg" onclick="myBtn()">
 <br><br>
 <font id="f">Громкость: 0 %</font><br><br>
 <input id="rng" type="range" min="0" step="0" value="0" oninput="setVolMove()" style="width: 70vw">
@@ -84,7 +84,7 @@
   f.innerHTML = "Громкость: " + rang.value + " %";
   
   player.addEventListener("playing", () => {
-    but.src = "stop.png";
+    but.src = "stop.svg";
     but.disabled = false;
 
     aniBut.cancel();
@@ -98,7 +98,7 @@
   
   function myBtn() {
     if(b === 0) {
-      but.src = "spin.png";
+      but.src = "spin.svg";
       but.disabled = true;
       player.volume = myStorage.getItem('vol') / 100;
       player.src = "https://listen1.myradio24.com/6262";
@@ -117,7 +117,7 @@
       player.pause();
       player.currentTime = 0;
       player.src = "";
-      but.src = "play.png";
+      but.src = "play.svg";
       b = 0;
     }
   }
