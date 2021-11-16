@@ -90,6 +90,7 @@
   var im = document.getElementById('im');
 
   var aniBut;
+  var now = "";
 
   rang.value = myStorage.getItem('vol');
   f.innerHTML = "Громкость: " + rang.value + " %";
@@ -153,9 +154,13 @@
 
       units.innerHTML = JSON.parse(x.responseText).listeners;
 
-      im.src = "https://myradio24.com/" + JSON.parse(x.responseText).img;
+      if(now !== JSON.parse(x.responseText).song) {
+        im.src = "https://myradio24.com/" + JSON.parse(x.responseText).img;
+      }
 
-      t.innerHTML = "Сейчас играет:<br><b>" +  JSON.parse(x.responseText).song + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br><div style=\"background:#5181b8; color:#ffffff; padding:5px\">Ранее звучали:</div>";
+      now = JSON.parse(x.responseText).song;
+
+      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br><div style=\"background:#5181b8; color:#ffffff; padding:5px\">Ранее звучали:</div>";
     }
     x.send();
   }
