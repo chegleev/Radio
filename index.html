@@ -66,10 +66,23 @@
       border-top-right-radius: 5px;
       font-family: sans-serif;
     }
+    section {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+    section i {
+      flex: 1 1 100%;
+      height: calc(50px * var(--c)/360);
+      border-radius: 100%;
+      background: #5181b8;
+    }
 </style>
 </head> 
 <body>
-<audio id="idaudio" preload="none"></audio>
+<audio id="idaudio" crossorigin="anonymous" preload="none"></audio>
 <div id="all">
 <center>
 <div style="left: 20px; position: absolute;"><img src="units.svg"><br><font id="units"></font></div><img id="btn" src="play.svg" onclick="myBtn()">
@@ -79,6 +92,7 @@
 <input id="rng" type="range" min="0" step="0" value="0" oninput="setVolMove()" style="width: 70vw">
 <br><br>
 <font id="title">...</font>
+<section></section>
 <div id="ranzv">Ранее звучали:</div>
 <textarea id="story" name="story" rows="17" style="width: 70vw; resize: none; overflow-y:scroll; padding: 15px;" disabled="disabled"></textarea>
 </center>
@@ -111,6 +125,7 @@
     but.src = "stop.svg";
     aniBut.cancel();
     bol = 1;
+    goAnalizer();
   });
 
   function setVolMove() {
@@ -181,9 +196,33 @@
 
       now = JSON.parse(x.responseText).song;
 
-      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br>";
+      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br>";
     }
     x.send();
+  }
+
+  function goAnalizer() {
+    const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+
+    const audio = document.querySelector('audio');
+    audio.onplay = () => audioCtx.resume();
+    const source = audioCtx.createMediaElementSource(audio);
+
+    const analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 2 ** 8;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    const section = document.querySelector('section');
+    const v = (new Array(bufferLength)).fill().map(e => (e = document.createElement('i')) && section.appendChild(e) && e);
+
+    setInterval(() => {
+      analyser.getByteTimeDomainData(dataArray);
+      dataArray.forEach((d, i) => v[i].style.setProperty('--c', Math.abs(128 - d) * 2.8125 | 0))
+    }, 100);
   }
 </script>
 </body> 
