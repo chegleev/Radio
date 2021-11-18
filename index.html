@@ -14,6 +14,8 @@
   textarea {
     color: "#000000";
     font-family: sans-serif;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
   textarea::-webkit-scrollbar {
     width: 5px;
@@ -170,7 +172,7 @@
 
       now = JSON.parse(x.responseText).song;
 
-      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br><div style=\"background:#5181b8; color:#ffffff; padding:5px\">Ранее звучали:</div>";
+      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br><div style=\"background:#5181b8; color:#ffffff; padding:5px; border-top-left-radius: 5px; border-top-right-radius: 5px;\">Ранее звучали:</div>";
     }
     x.send();
   }
