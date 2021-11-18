@@ -62,8 +62,6 @@
       background:#5181b8;
       color:#ffffff;
       padding: 5px;
-      /*border-top-left-radius: 5px;
-      border-top-right-radius: 5px;*/
       font-family: sans-serif;
     }
     section {
@@ -76,7 +74,7 @@
     }
     section i {
       flex: 1 1 100%;
-      height: calc(50px * var(--c)/360);
+      height: calc(var(--vol) * var(--c)/360);
       border-radius: 100%;
       background: #ffffff;
     }
@@ -119,7 +117,10 @@
   var aniBut;
   var now = "";
 
+  var sect = document.querySelector('section');
+
   rang.value = myStorage.getItem('vol');
+  sect.style.setProperty('--vol', (50*(100/rang.value)) + 'px');
   f.innerHTML = "Громкость: " + rang.value + " %";
   
   player.addEventListener("playing", () => {
@@ -131,6 +132,7 @@
 
   function setVolMove() {
     let v = myStorage.setItem('vol', rang.value);
+    sect.style.setProperty('--vol', (50*(100/rang.value)) + 'px');
     player.volume = rang.value / 100;
     f.innerHTML = "Громкость: " + rang.value + " %";
   }
