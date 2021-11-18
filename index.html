@@ -58,6 +58,14 @@
       border-radius: 5px;
       background: #dae2ea;
     }
+    #ranzv {
+      background:#5181b8;
+      color:#ffffff;
+      padding: 5px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      font-family: sans-serif;
+    }
 </style>
 </head> 
 <body>
@@ -71,6 +79,7 @@
 <input id="rng" type="range" min="0" step="0" value="0" oninput="setVolMove()" style="width: 70vw">
 <br><br>
 <font id="title">...</font>
+<div id="ranzv">Ранее звучали:</div>
 <textarea id="story" name="story" rows="17" style="width: 70vw; resize: none; overflow-y:scroll; padding: 15px;" disabled="disabled"></textarea>
 </center>
 </div>
@@ -172,7 +181,7 @@
 
       now = JSON.parse(x.responseText).song;
 
-      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br><div style=\"background:#5181b8; color:#ffffff; padding:5px; border-top-left-radius: 5px; border-top-right-radius: 5px;\">Ранее звучали:</div>";
+      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br>";
     }
     x.send();
   }
