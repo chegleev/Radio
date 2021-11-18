@@ -62,22 +62,23 @@
       background:#5181b8;
       color:#ffffff;
       padding: 5px;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+      /*border-top-left-radius: 5px;
+      border-top-right-radius: 5px;*/
       font-family: sans-serif;
     }
     section {
       display: flex;
       align-items: center;
       height: 50px;
-      padding-left: 50px;
-      padding-right: 50px;
+      background: #5181b8;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
     section i {
       flex: 1 1 100%;
       height: calc(50px * var(--c)/360);
       border-radius: 100%;
-      background: #5181b8;
+      background: #ffffff;
     }
 </style>
 </head> 
@@ -94,7 +95,7 @@
 <font id="title">...</font>
 <section></section>
 <div id="ranzv">Ранее звучали:</div>
-<textarea id="story" name="story" rows="17" style="width: 70vw; resize: none; overflow-y:scroll; padding: 15px;" disabled="disabled"></textarea>
+<textarea id="story" name="story" rows="15" style="width: 70vw; resize: none; overflow-y:scroll; padding: 15px;" disabled="disabled"></textarea>
 </center>
 </div>
 
@@ -196,7 +197,7 @@
 
       now = JSON.parse(x.responseText).song;
 
-      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br>";
+      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>Далее в эфире:<br><b>" + JSON.parse(x.responseText).nextsongs[0] + "</b><br><br>";
     }
     x.send();
   }
@@ -222,7 +223,7 @@
     setInterval(() => {
       analyser.getByteTimeDomainData(dataArray);
       dataArray.forEach((d, i) => v[i].style.setProperty('--c', Math.abs(128 - d) * 2.8125 | 0))
-    }, 100);
+    }, 15);
   }
 </script>
 </body> 
