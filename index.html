@@ -76,6 +76,7 @@
 <script>
   myStorage = window.localStorage;
 
+  var bol = 1;
   var b = 0;
   var player = document.getElementById('idaudio');
   var but = document.getElementById('btn');
@@ -97,9 +98,8 @@
   
   player.addEventListener("playing", () => {
     but.src = "stop.svg";
-    but.disabled = false;
-
     aniBut.cancel();
+    bol = 1;
   });
 
   function setVolMove() {
@@ -109,13 +109,14 @@
   }
   
   function myBtn() {
+    if(bol === 1) {
     if(b === 0) {
       but.src = "spin.svg";
-      but.disabled = true;
       player.volume = myStorage.getItem('vol') / 100;
       player.src = "https://listen1.myradio24.com/6262";
       player.play();
       b = 1;
+      bol = 0;
 
       aniBut = document.getElementById("btn").animate(
       [
@@ -132,6 +133,7 @@
       but.src = "play.svg";
       b = 0;
     }
+  }
   }
   getTitle();
 
@@ -163,7 +165,6 @@
           {
             duration: 1000, direction: 'reverse'
           })
-        
         im.src = "https://myradio24.com/" + JSON.parse(x.responseText).img;
       }
 
