@@ -131,8 +131,9 @@
     but.src = "stop.svg";
     aniBut.cancel();
     bol = 1;
-    goAnalizer();
   });
+  
+  goAnalizer();
 
   function setVolMove() {
     let v = myStorage.setItem('vol', rang.value);
