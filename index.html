@@ -79,8 +79,10 @@
     section i {
       flex: 1 1 100%;
       height: calc(var(--vol) * var(--c)/360);
-      border-radius: 100%;
+      border-radius: 100vw;
       background: #ffffff;
+      margin-right: 1px;
+      margin-left: 1px;
     }
 </style>
 </head> 
@@ -216,7 +218,7 @@
     const source = audioCtx.createMediaElementSource(audio);
 
     const analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2 ** 8;
+    analyser.fftSize = 128;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
