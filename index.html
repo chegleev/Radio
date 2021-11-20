@@ -67,6 +67,7 @@
       color:#ffffff;
       padding: 5px;
       font-family: sans-serif;
+      padding-top: 2px;
     }
     section {
       display: flex;
@@ -132,7 +133,7 @@
     aniBut.cancel();
     bol = 1;
   });
-  
+
   goAnalizer();
 
   function setVolMove() {
@@ -217,7 +218,7 @@
     const source = audioCtx.createMediaElementSource(audio);
 
     const analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2**8;
+    analyser.fftSize = 2**8; //256
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
@@ -229,7 +230,7 @@
 
     setInterval(() => {
       analyser.getByteTimeDomainData(dataArray);
-      dataArray.forEach((d, i) => v[i].style.setProperty('--c', Math.abs(128 - d) * 2.8125 | 0))
+      dataArray.forEach((d, i) => v[i].style.setProperty('--c', Math.abs(128 - d) * 2.8125 | 0));
     }, 45);
   }
 </script>
