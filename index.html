@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +84,11 @@
       border-radius: 100%;
       background: #ffffff;
     }
+    :root {
+      --hv: hidden;
+    }
     mydiv j {
+      visibility: var(--hv);
       transform: translate(-50%, -50%);
       position: absolute;
       left: 50%;
@@ -148,6 +151,7 @@
     but.src = "stop.svg";
     aniBut.cancel();
     bol = 1;
+    sectdiv.style.setProperty('--hv', "visible");
   });
 
   goAnalizer();
@@ -179,6 +183,7 @@
       })
 
     } else {
+      sectdiv.style.setProperty('--hv', "hidden");
       player.pause();
       player.currentTime = 0;
       player.src = "";
