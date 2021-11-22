@@ -74,15 +74,18 @@
       display: flex;
       align-items: center;
       height: 50px;
-      background: #5181b8;
+      background: #dae2ea;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
     }
     section i {
+      margin-top: 50px;
+      transform: translate(0%, -50%);
       flex: 1 1 100%;
       height: calc(var(--vol) * var(--c)/360);
-      border-radius: 100%;
-      background: #ffffff;
+      border-top-left-radius: 100%;
+      border-top-right-radius: 100%;
+      background: #5181b8;
     }
     :root {
       --hv: hidden;
@@ -93,7 +96,6 @@
       position: absolute;
       left: 50%;
       top: 70px;
-      align-items: center;
       height: calc((var(--vol) * var(--cc)/360) + 50px);
       width: calc((var(--vol) * var(--cc)/360) + 50px);
       background: #dae2ea;
@@ -136,11 +138,11 @@
 
   var im = document.getElementById('im');
 
-  var aniBut;
-  var now = "";
-
   var sect = document.querySelector('section');
   var sectdiv = document.querySelector('mydiv');
+
+  var aniBut;
+  var now = "";
 
   rang.value = myStorage.getItem('vol');
   sect.style.setProperty('--vol', (50*(100/rang.value)) + 'px');
