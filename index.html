@@ -210,7 +210,7 @@
       var list = "";
 
       for(var i=8; i>=0; i--) {
-        list += JSON.parse(x.responseText).songs[i][0] + "\n" + JSON.parse(x.responseText).songs[i][1] + "\n\n";
+        list += JSON.parse(x.responseText).songs[i][0].substring(0, 5) + "\n" + JSON.parse(x.responseText).songs[i][1] + "\n\n";
       }
 
       story.innerHTML = list.trim("\n");
