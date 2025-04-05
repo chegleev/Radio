@@ -233,8 +233,8 @@
       }
 
       now = JSON.parse(x.responseText).song;
-      ns = JSON.parse(x.responseText).nextsong[0].song;
-      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br>" + ns + "</b><br><br>";
+      ns = JSON.parse(x.responseText).nextsongs[0].song;
+      t.innerHTML = "Сейчас играет:<br><b>" + now + </b>Далее:<br>" + ns + "</b><br><br>";
     }
     x.send();
   }
