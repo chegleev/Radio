@@ -145,7 +145,6 @@
 
   var aniBut;
   var now = "";
-  var ns = "";
 
   rang.value = myStorage.getItem('vol');
   sect.style.setProperty('--vol', (50*(100/rang.value)) + 'px');
@@ -233,8 +232,7 @@
       }
 
       now = JSON.parse(x.responseText).song;
-      ns = JSON.parse(x.responseText).nextsongs[0].song;
-      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>" + ns;
+      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br><br>";
     }
     x.send();
   }
