@@ -232,8 +232,8 @@
       }
 
       now = JSON.parse(x.responseText).song;
-      nextsong = JSON.parse(x.responseText).nextsong[0].song;
-      t.innerHTML = "Сейчас играет:<br><b>" + now + </b><br> + nextsong + "</b><br><br>";
+      ns = JSON.parse(x.responseText).nextsong[0].song;
+      t.innerHTML = "Сейчас играет:<br><b>" + now + "</b><br>" + ns + "</b><br><br>";
     }
     x.send();
   }
